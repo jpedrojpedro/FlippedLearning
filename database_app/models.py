@@ -6,6 +6,9 @@ from django.db import models
 class Assunto(models.Model):
     nome = models.CharField(max_length=100)
 
+    def __unicode__(self):
+        return self.nome
+
     class Meta:
         db_table = 'assunto'
 
@@ -51,7 +54,10 @@ class Duvida(models.Model):
 
 class Esquema(models.Model):
     nome = models.CharField(primary_key=True, max_length=50)
-    criacao = models.CharField(max_length=4096)
+    criacao = models.TextField(max_length=4096)
+
+    def __unicode__(self):
+        return self.nome;
 
     class Meta:
         db_table = 'esquema'
@@ -69,8 +75,11 @@ class Instancia(models.Model):
 
 class ListaExercicio(models.Model):
     id_assunto = models.ForeignKey(Assunto, db_column='id_assunto')
-    descricao = models.CharField(max_length=1024, blank=True)
+    descricao = models.TextField(max_length=1024, blank=True)
     dt_liberada = models.DateTimeField()
+
+    def __unicode__(self):
+        return self.descricao
 
     class Meta:
         db_table = 'lista_exercicio'
@@ -92,8 +101,11 @@ class Questao(models.Model):
     id_exercicio = models.ForeignKey(ListaExercicio, db_column='id_exercicio')
     login_usuario = models.ForeignKey('Usuario', db_column='login_usuario')
     nome_esquema = models.ForeignKey(Esquema, db_column='nome_esquema', blank=True, null=True)
-    pergunta = models.CharField(max_length=1024)
-    resposta_gabarito = models.CharField(max_length=1024, db_column='resposta')
+    pergunta = models.TextField(max_length=1024)
+    resposta_gabarito = models.TextField(max_length=1024, db_column='resposta')
+
+    def __unicode__(self):
+        return self.pergunta;
 
     class Meta:
         db_table = 'questao'
@@ -116,7 +128,10 @@ class Usuario(models.Model):
     senha = models.CharField(max_length=15)
     nome = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
-    professor = models.TextField() # This field type is a guess.
+    professor = models.CharField(choices=(('1', 'Sim'), ('0', 'Nao')), default='0', max_length=1)
+
+    def __unicode__(self):
+        return self.login
 
     class Meta:
         db_table = 'usuario'
