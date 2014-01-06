@@ -16,7 +16,7 @@ urlpatterns = patterns('',
     url(r'^$', 'database_app.views.boas_vindas.views.index', name='inicio'),
 
     # Usuario
-    url(r'^usuario$', 'database_app.views.usuario.views.index', name='usuario'),
+    url(r'^usuario/', 'database_app.views.usuario.views.index', name='usuario'),
 
     # Admin
     url(r'^admin/', include(admin.site.urls)),
