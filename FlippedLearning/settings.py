@@ -66,13 +66,14 @@ LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/aula/'
 
 # Organização de arquivos estáticos
-MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media/')
-MEDIA_URL = '/media/'
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'collect/')
-STATIC_URL = '/collect/'
+STATIC_URL = os.path.join(PROJECT_DIR, 'static/')
 STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, 'static'),
-    )
+)
+#MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media/')
+#MEDIA_URL = '/media/'
+#STATIC_ROOT = os.path.join(PROJECT_DIR, 'collect/')
+#STATIC_URL = '/collect/'
 
 # URL prefix for admin static files -- css, JavaScript and images.
 # Make sure to use a trailing slash.

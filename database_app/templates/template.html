@@ -1,0 +1,36 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static "css/template.css" %}">
+    {% block link %}{% endblock %}
+    {% block javascript %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div id="wrap">
+        <div id="topo">
+            <div id="logo">
+                <img src="{% static "img/flipped_learning_logo.jpg" %}">
+            </div>
+            <div id="menu">
+                <ul>
+                    <li><a href="#"><span class="texto_menu">Minha Conta</span></a></li>
+                    <li><a href="#"><span class="texto_menu">Exercícios</span></a></li>
+                    <li><a href="#"><span class="texto_menu">Fórum</span></a></li>
+                    <li><a href="/"><span class="texto_menu">Sair</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="conteudo">
+            {% block content %}{% endblock %}
+        </div>
+        <div id="rodape">
+            <span class="texto_rodape">
+                Desenvolvido por João Pedro Pinheiro ; Orientado por Sérgio Lifschitz
+            </span>
+        </div>
+    </div>
+</body>
+</html>

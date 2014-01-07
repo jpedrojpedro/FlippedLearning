@@ -1,0 +1,33 @@
+{% extends "template.html" %}
+
+{% load staticfiles %}
+
+{% block title %}Flipped Learning Banco de Dados{% endblock %}
+
+{% block link %}<link rel="stylesheet" type="text/css" href="{% static "css/welcome_page.css" %}">{% endblock %}
+
+{% block content %}
+    <p style="text-align: center" class="texto_manchete">
+        Aprenda SQL Praticando
+    </p>
+    <div id="video">
+        <!-- Buscar vídeo youtube -->
+        <iframe width="560" height="315"
+                src="//www.youtube.com/embed/iQWvc6qhTds"
+                frameborder="0" allowfullscreen>
+        </iframe>
+    </div>
+    <div id="explicacao">
+        <span class="texto_conteudo">
+            Bem vindos ao site de apoio ao aprendizado de Banco de Dados.<br>
+            Temos as seguintes funcionalidades disponíveis:
+            <ul>
+                <li>Exercícios práticos de SQL</li>
+                <li>Fórum para discussão de tópicos da disciplina</li>
+                <li>Cada aluno terá acesso a esquemas de dados distintos</li>
+                <li>Os alunos poderão compartilhar seus esquemas com os demais alunos</li>
+                <li>Professor e Monitor da disciplina terão acesso ao fórum</li>
+            </ul>
+        </span>
+    </div>
+{% endblock %}

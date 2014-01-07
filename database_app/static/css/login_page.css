@@ -1,0 +1,51 @@
+#wrap
+{
+    margin: 0 auto;
+    width: 1024px;
+    height: auto;
+    position: relative;
+}
+
+#login
+{
+    position: relative;
+    margin: 0 auto;
+    background-color: #484A4F;
+    border-radius: 0 0 6px 6px;
+    padding: 30px;
+}
+
+.texto_entrada
+{
+    font-family: arial;
+    font-size: 14px;
+    color: #FFFFFF;
+}
+
+.field
+{
+    background-color: #5F6166;
+    color: #FFFFFF;
+    width: 300px;
+    height: 50px;
+    font-size: 14px;
+    border: 0;
+    font-family: arial;
+    margin-top: 5px;
+    padding: 0 10px;
+}
+
+.button
+{
+    background-color: #6EAD4D;
+    color: #FFFFFF;
+    width: 70px;
+    height: 40px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: arial;
+    border: 0;
+    cursor: pointer;
+    margin-top: 15px;
+}

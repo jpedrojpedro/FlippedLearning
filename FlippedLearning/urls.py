@@ -12,11 +12,14 @@ urlpatterns = patterns('',
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
-    # Boas Vindas
-    url(r'^$', 'database_app.views.boas_vindas.views.index', name='inicio'),
+    # Login Page
+    url(r'^$', 'database_app.views.welcome.login', name='login'),
+
+    # Welcome Page
+    url(r'^bemvindo/', 'database_app.views.welcome.index', name='bemvindo'),
 
     # Usuario
-    url(r'^usuario/', 'database_app.views.usuario.views.index', name='usuario'),
+    #url(r'^usuario/', 'database_app.views.usuario.views.index', name='usuario'),
 
     # Admin
     url(r'^admin/', include(admin.site.urls)),

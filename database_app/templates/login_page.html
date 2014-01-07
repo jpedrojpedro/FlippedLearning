@@ -1,0 +1,44 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static "css/login_page.css" %}">
+    <title>Flipped Learning Login</title>
+</head>
+<body>
+    <div id="wrap">
+        <!-- Trocar method para post -->
+        <form method="get" action="/bemvindo/">
+            <table id="login">
+                <tr>
+                    <td align="center">
+                        <img src="{% static "img/flipped_learning_logo.jpg" %}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="texto_entrada">Entre com sua credencial:</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input id="email" type="text" name="email" maxlength="100"
+                               placeholder="Seu email" class="field" autofocus />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input id="password" type="password" name="password" maxlength="15"
+                               placeholder="Sua senha" class="field"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <input id="button" type="submit" value="Entrar"
+                               class="button"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

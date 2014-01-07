@@ -1,0 +1,26 @@
+#video
+{
+    position: relative;
+    float: left;
+    width: 60%;
+}
+
+#explicacao
+{
+    position: relative;
+    float: right;
+    width: 40%;
+}
+
+.texto_conteudo
+{
+    font-family: arial;
+    font-size: 15px;
+}
+
+.texto_manchete
+{
+    font-family: arial;
+    font-size: 18px;
+    font-weight: bold;
+}
