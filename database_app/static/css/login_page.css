@@ -22,6 +22,15 @@
     color: #FFFFFF;
 }
 
+.texto_erro
+{
+    font-family: arial;
+    font-size: 14px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #E56565;
+}
+
 .field
 {
     background-color: #5F6166;

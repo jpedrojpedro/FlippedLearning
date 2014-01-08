@@ -9,7 +9,8 @@
 <body>
     <div id="wrap">
         <!-- Trocar method para post -->
-        <form method="get" action="/bemvindo/">
+        <form method="post" action="/bemvindo/">
+            {% csrf_token %}
             <table id="login">
                 <tr>
                     <td align="center">
@@ -20,9 +21,16 @@
                     <td><span class="texto_entrada">Entre com sua credencial:</span></td>
                 </tr>
                 <tr>
+                    <td align="center">
+                        {% if error_message %}
+                            <span class="texto_erro">{{ error_message }}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
                     <td>
-                        <input id="email" type="text" name="email" maxlength="100"
-                               placeholder="Seu email" class="field" autofocus />
+                        <input id="email" type="text" name="login" maxlength="100"
+                               placeholder="Seu login" class="field" autofocus />
                     </td>
                 </tr>
                 <tr>
