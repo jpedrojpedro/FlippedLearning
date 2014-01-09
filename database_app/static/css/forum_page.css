@@ -1,0 +1,50 @@
+#busca
+{
+    position: relative;
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+#assunto
+{
+    position: relative;
+    float: left;
+    width: 30%;
+    height: 100%;
+}
+
+#resultado
+{
+    position: relative;
+    float: right;
+    width: 70%;
+    height: 100%;
+}
+
+.field
+{
+    background-color: #5F6166;
+    color: #FFFFFF;
+    width: 500px;
+    height: 40px;
+    font-size: 14px;
+    border: 0;
+    font-family: arial;
+    padding: 0 10px;
+}
+
+.button
+{
+    background-color: #6EAD4D;
+    color: #FFFFFF;
+    width: 70px;
+    height: 40px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: arial;
+    border: 0;
+    cursor: pointer;
+    margin-left: 5px;
+}

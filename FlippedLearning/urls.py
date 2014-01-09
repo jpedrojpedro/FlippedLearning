@@ -13,13 +13,13 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Login Page
-    url(r'^$', 'database_app.views.welcome.login', name='login'),
+    url(r'^$', 'database_app.views.usuario.login', name='login'),
 
     # Welcome Page
-    url(r'^bemvindo/', 'database_app.views.welcome.index', name='bemvindo'),
+    url(r'^inicio/', 'database_app.views.usuario.inicio', name='inicio'),
 
-    # Usuario
-    #url(r'^usuario/', 'database_app.views.usuario.views.index', name='usuario'),
+    # Forum Page
+    url(r'^forum/', 'database_app.views.forum.index', name='forum'),
 
     # Admin
     url(r'^admin/', include(admin.site.urls)),

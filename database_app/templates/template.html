@@ -15,11 +15,13 @@
                 <img src="{% static "img/flipped_learning_logo.jpg" %}">
             </div>
             <div id="menu">
-                <span class="texto_menu">Bem Vindo, {% if nome %}{{ nome }}{% endif %}</span>
+                <span class="texto_menu">
+                    Bem Vindo, {{ request.session.nome }}
+                </span>
                 <ul>
                     <li><a href="#"><span class="texto_menu">Minha Conta</span></a></li>
                     <li><a href="#"><span class="texto_menu">Exercícios</span></a></li>
-                    <li><a href="#"><span class="texto_menu">Fórum</span></a></li>
+                    <li><a href="/forum/"><span class="texto_menu">Fórum</span></a></li>
                     <li><a href="/"><span class="texto_menu">Sair</span></a></li>
                 </ul>
             </div>

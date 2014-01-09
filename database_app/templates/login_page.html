@@ -9,7 +9,7 @@
 <body>
     <div id="wrap">
         <!-- Trocar method para post -->
-        <form method="post" action="/bemvindo/">
+        <form method="post" action="/inicio/">
             {% csrf_token %}
             <table id="login">
                 <tr>
@@ -30,13 +30,15 @@
                 <tr>
                     <td>
                         <input id="email" type="text" name="login" maxlength="100"
-                               placeholder="Seu login" class="field" autofocus />
+                               placeholder="Seu login" class="field" autofocus
+                               value="{% if login %}{{ login }}{% endif %}"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <input id="password" type="password" name="password" maxlength="15"
-                               placeholder="Sua senha" class="field"/>
+                               placeholder="Sua senha" class="field"
+                               value="{% if password %}{{ password }}{% endif %}"/>
                     </td>
                 </tr>
                 <tr>

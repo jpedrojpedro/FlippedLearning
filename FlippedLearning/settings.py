@@ -148,6 +148,7 @@ FACEBOOK_API_SECRET = environ.get("FB_APP_KEY", "")
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
     'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.request',
 )
 
 # A sample logging configuration. The only tangible logging
