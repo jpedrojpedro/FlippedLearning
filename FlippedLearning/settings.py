@@ -173,3 +173,10 @@ LOGGING = {
         },
     }
 }
+
+# A pedido do João Leite para facilitar os testes em outras
+# máquinas
+try:
+    from settings_local import *
+except:
+    pass
