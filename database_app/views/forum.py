@@ -1,5 +1,6 @@
 # coding=utf-8
 
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.db.models import Q
@@ -7,6 +8,7 @@ from database_app.models.assunto import Assunto
 from database_app.models.duvida import Duvida
 
 
+@login_required
 def index(request):
     subjects = Assunto.objects.all().order_by('nome')
     template = loader.get_template("forum_page.html")
@@ -15,7 +17,7 @@ def index(request):
     })
     return HttpResponse(template.render(context))
 
-
+@login_required
 def search(request):
     if request.POST:
         search = request.POST['search']

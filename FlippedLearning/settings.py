@@ -62,8 +62,8 @@ USE_I18N = True
 USE_L10N = True
 
 
-LOGIN_URL = '/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = "/login"
+LOGIN_REDIRECT_URL = "/inicio"
 
 # Organização de arquivos estáticos
 STATIC_URL = os.path.join(PROJECT_DIR, 'static/')

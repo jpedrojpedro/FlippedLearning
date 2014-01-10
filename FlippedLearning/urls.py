@@ -13,7 +13,10 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Login Page
-    url(r'^$', 'database_app.views.usuario.login', name='login'),
+    url(r'^login$', 'django.contrib.auth.views.login', {'template_name': 'login_page.html'}, name='login'),
+
+    # Logout Page
+    url(r'^logout$', 'django.contrib.auth.views.logout_then_login', name='logout'),
 
     # Welcome Page
     url(r'^inicio/', 'database_app.views.usuario.inicio', name='inicio'),
