@@ -4,22 +4,49 @@
     float: left;
     width: 100%;
     text-align: center;
+    margin: 10px 0;
 }
 
 #assunto
 {
     position: relative;
     float: left;
-    width: 30%;
+    width: 20%;
     height: 100%;
+    margin-bottom: 10px;
 }
 
-#resultado
+#lista_assunto
+{
+    background-color: #5F6166;
+    color: #FFFFFF;
+    padding: 0 10px;
+}
+
+#resultados
 {
     position: relative;
     float: right;
-    width: 70%;
+    width: 80%;
     height: 100%;
+}
+
+.resultado
+{
+    position: relative;
+    float: left;
+    width: 100%;
+    background-color: #5F6166;
+    color: #FFFFFF;
+    padding: 10px 0;
+}
+
+.comentario
+{
+    position: relative;
+    float: right;
+    width: 95%;
+    margin-top: 1px;
 }
 
 .field
@@ -47,4 +74,16 @@
     border: 0;
     cursor: pointer;
     margin-left: 5px;
+}
+
+.texto_filtro_assunto
+{
+    font-family: arial;
+    font-size: 14px;
+}
+
+.texto_resultado
+{
+    font-family: arial;
+    font-size: 15px;
 }

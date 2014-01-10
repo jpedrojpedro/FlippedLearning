@@ -19,7 +19,10 @@ urlpatterns = patterns('',
     url(r'^inicio/', 'database_app.views.usuario.inicio', name='inicio'),
 
     # Forum Page
-    url(r'^forum/', 'database_app.views.forum.index', name='forum'),
+    url(r'^forum/$', 'database_app.views.forum.index', name='forum'),
+
+    # Forum Page :: Busca
+    url(r'^forum/busca/$', 'database_app.views.forum.search', name='busca'),
 
     # Admin
     url(r'^admin/', include(admin.site.urls)),

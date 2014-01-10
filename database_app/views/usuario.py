@@ -23,7 +23,10 @@ def inicio(request):
                 'login': login,
                 'password': password,
             })
-        return HttpResponse(template.render(context))
+    else:
+        template = loader.get_template("welcome_page.html")
+        context = RequestContext(request)
+    return HttpResponse(template.render(context))
 
 
 def login(request):

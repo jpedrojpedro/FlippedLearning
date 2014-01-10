@@ -8,27 +8,51 @@
 
 {% block content %}
     <div id="busca">
-        <form method="post" action="#">
+        <form method="post" action="/forum/busca/">
             <input type="text" name="search" placeholder="Faça sua busca" class="field"
-                   autofocus value="{% if search %}{{ search }}{% endif %}"/>
+                   value="{% if search %}{{ search }}{% endif %}" autofocus/>
             <input type="submit" class="button" value="Buscar"/>
+            <input type="button" class="button" value="Nova Dúvida"
+                   style="width: 100px; background-color: #4387FD"/>
+            {% csrf_token %}
         </form>
     </div>
     <div id="assunto">
-        <table>
-            <tr><td><span>Filtro por assunto:</span></td></tr>
+        <table id="lista_assunto">
+            <tr>
+                <td>
+                    <span class="texto_filtro_assunto">
+                        Filtro por assunto:
+                    </span>
+                </td>
+            </tr>
             {% for subject in subjects %}
                 <tr>
                     <td>
                         <input type="checkbox" name="filtro_assunto"
                                value="{{ subject.id }}"/>
-                        <span>{{ subject.nome }}</span>
+                        <span class="texto_filtro_assunto">
+                            {{ subject.nome }}
+                        </span>
                     </td>
                 </tr>
             {% endfor %}
         </table>
     </div>
-    <div id="resultado">
-        <span>Aqui serão exibidos os resultados da busca!</span>
+    <div id="resultados">
+        {% if error_message %}
+            <span class="texto_resultado">{{ error_message }}</span>
+        {% endif %}
+        {% for result in results %}
+            <div class="resultado">
+                <span class="texto_resultado">
+                    {{ result.id }} :: {{ result.pergunta }}
+                </span>
+            </div>
+            <div class="comentario">
+                <input type="text" class="field" placeholder="Escreva seu comentário"
+                       style="width: 100%; padding: 0 0;"/>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}

@@ -1,12 +1,10 @@
 from __future__ import unicode_literals
 from django.db import models
-from assunto import Assunto
 from usuario import Usuario
 from questao import Questao
 
 
 class Duvida(models.Model):
-    id_assunto = models.ForeignKey(Assunto, db_column='id_assunto')
     login_usuario = models.ForeignKey(Usuario, db_column='login_usuario')
     id_questao = models.ForeignKey(Questao, db_column='id_questao', blank=True, null=True)
     pergunta = models.CharField(max_length=1024)
