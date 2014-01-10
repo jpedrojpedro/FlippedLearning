@@ -66,9 +66,14 @@ LOGIN_URL = "/login"
 LOGIN_REDIRECT_URL = "/inicio"
 
 # Organização de arquivos estáticos
-STATIC_URL = os.path.join(PROJECT_DIR, 'static/')
+MEDIA_URL = '/static/media/'
+MEDIA_ROOT = os.path.join(PROJECT_DIR, 'static/media/')
+STATIC_URL = '/static/collect/'
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static/collect/')
+TEMPLATE_DIRS = (os.path.join(PROJECT_DIR, 'templates/'),)
+
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_DIR, 'static'),
+
 )
 #MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media/')
 #MEDIA_URL = '/media/'
@@ -79,11 +84,6 @@ STATICFILES_DIRS = (
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
 ADMIN_MEDIA_PREFIX = '/static/admin/'
-
-# Folder to static files
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_DIR, 'static'),
-)
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -112,10 +112,6 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'FlippedLearning.urls'
-
-TEMPLATE_DIRS = (
-    os.path.join(PROJECT_DIR, 'templates'),
-)
 
 SOCIAL_AUTH_UID_LENGTH = 200
 
@@ -173,10 +169,3 @@ LOGGING = {
         },
     }
 }
-
-# A pedido do João Leite para facilitar os testes em outras
-# máquinas
-try:
-    from settings_local import *
-except:
-    pass

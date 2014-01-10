@@ -29,4 +29,7 @@ urlpatterns = patterns('',
 
     # Admin
     url(r'^admin/', include(admin.site.urls)),
+
+    # Static Files
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve',),
 )
