@@ -1,0 +1,13 @@
+.exercicio
+{
+    width: 100%;
+    border: 1px solid #555555;
+    background-color: #5F6166;
+}
+
+.texto_exercicio
+{
+    font-family: arial;
+    font-size: 15px;
+    color: #FFFFFF;
+}

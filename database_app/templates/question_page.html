@@ -1,0 +1,35 @@
+{% extends "template.html" %}
+
+{% load staticfiles %}
+
+{% block title %}Exercícios :: Flipped Learning Banco de Dados{% endblock %}
+
+{% block link %}<link rel="stylesheet" type="text/css" href="{% static "css/question_page.css" %}">{% endblock %}
+
+{% block content %}
+    <span class="texto_cabecalho">Lista de Exercícios {{ exercise.id }}</span>
+    <br/>
+    <span class="texto_questao">{{ exercise.descricao }}</span>
+    <br/>
+    <form method="post" action="">
+        <table>
+            {% for question in questions %}
+                <tr>
+                    <td>
+                        <span class="texto_questao">{{ question.id }} . {{ question.pergunta }}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <textarea></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right"><input type="submit" class="button" value="Enviar"></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <input name="question" type="hidden" value="{{ question.id }}"/>
+        {% csrf_token %}
+    </form>
+{% endblock %}

@@ -33,6 +33,12 @@ urlpatterns = patterns('',
     # Forum Page :: Adicionar Duvida
     url(r'^duvida/add/$', 'database_app.views.duvida.add', name='adicionar_duvida'),
 
+    # Exercise Page
+    url(r'^exercicio/$', 'database_app.views.exercicio.list_all', name='exercicio'),
+
+    # Exercise Page :: Abrir Exercicio
+    url(r'^exercicio/(?P<exercicio_id>\d+)/$', 'database_app.views.exercicio.show', name='abrir_exercicio'),
+
     # Admin
     url(r'^admin/', include(admin.site.urls)),
 

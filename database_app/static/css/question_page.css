@@ -1,0 +1,27 @@
+.texto_cabecalho
+{
+    font-family: arial;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.texto_questao
+{
+    font-family: arial;
+    font-size: 15px;
+}
+
+.button
+{
+    background-color: #6EAD4D;
+    color: #FFFFFF;
+    width: 70px;
+    height: 40px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: arial;
+    border: 0;
+    cursor: pointer;
+    margin-left: 5px;
+}
