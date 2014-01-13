@@ -6,14 +6,38 @@
 
 {% block link %}<link rel="stylesheet" type="text/css" href="{% static "css/forum_page.css" %}">{% endblock %}
 
+{% block javascript %}<script type="text/javascript" src="{% static "js/forum_page.js" %}"></script>{% endblock %}
+
 {% block content %}
     <div id="busca">
-        <form method="post" action="/forum/busca/">
+        <form id="search_form" method="post" action="{% url 'busca' %}">
             <input type="text" name="search" placeholder="Faça sua busca" class="field"
                    value="{% if search %}{{ search }}{% endif %}" autofocus/>
             <input type="submit" class="button" value="Buscar"/>
             <input type="button" class="button" value="Nova Dúvida"
-                   style="width: 100px; background-color: #4387FD"/>
+                   style="width: 100px; background-color: #4387FD"
+                   onclick="hideAndShow('search_form', 'doubt_form')"/>
+            {% csrf_token %}
+        </form>
+        <form id="doubt_form" method="post" action="{% url 'adicionar_duvida' %}"
+              style="display: none;">
+            <table align="center">
+                <tr>
+                    <td>
+                        <textarea name="doubt" placeholder="Digite sua dúvida"
+                                  class="field_area">
+                        </textarea>
+                    </td>
+                    <td>
+                        <input type="submit" class="button" value="Salvar"/>
+                    </td>
+                    <td>
+                        <input type="button" class="button" value="Voltar"
+                               style="background-color: #4387FD"
+                               onclick="hideAndShow('doubt_form', 'search_form')"/>
+                    </td>
+                </tr>
+            </table>
             {% csrf_token %}
         </form>
     </div>
@@ -43,16 +67,38 @@
         {% if error_message %}
             <span class="texto_resultado">{{ error_message }}</span>
         {% endif %}
-        {% for result in results %}
+        {% for doubt in doubts %}
             <div class="resultado">
                 <span class="texto_resultado">
-                    {{ result.id }} :: {{ result.pergunta }}
+                    {{ doubt.id }} :: {{ doubt.pergunta }}
                 </span>
             </div>
-            <div class="comentario">
-                <input type="text" class="field" placeholder="Escreva seu comentário"
-                       style="width: 100%; padding: 0 0;"/>
-            </div>
+            {% for key, value in comments.items %}
+                {% if key == doubt.id %}
+                    {% if value %}
+                        <div class="comentario">
+                            {% for comment in value %}
+                                <span class="texto_resultado">
+                                    {{ comment.texto_comentario }}
+                                </span>
+                                <br/>
+                                <span class="texto_credito">
+                                    Postado por {{ comment.login_usuario }} em: {{ comment.dt_comentario }}
+                                </span>
+                                <br/>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            <form method="post" action="{% url 'adicionar_comentario' %}">
+                <div class="comentario">
+                    <input type="text" class="field" placeholder="Escreva seu comentário"
+                           style="width: 100%; padding: 0 0;" name="comment"/>
+                    <input type="hidden" name="doubt" value="{{ doubt.id }}"/>
+                    {% csrf_token %}
+                </div>
+            </form>
         {% endfor %}
     </div>
 {% endblock %}

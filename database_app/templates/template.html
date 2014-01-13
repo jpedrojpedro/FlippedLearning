@@ -12,16 +12,16 @@
     <div id="wrap">
         <div id="topo">
             <div id="logo">
-                <a href="/inicio/"><img src="{% static "img/flipped_learning_logo.jpg" %}"></a>
+                <a href="{% url 'inicio' %}"><img src="{% static "img/flipped_learning_logo.jpg" %}"></a>
             </div>
             <div id="menu">
                 <span class="texto_menu">
-                    Bem Vindo, {{ request.session.nome }}
+                    Bem Vindo, {{ request.user.first_name }}
                 </span>
                 <ul>
                     <li><a href="#"><span class="texto_menu">Minha Conta</span></a></li>
                     <li><a href="#"><span class="texto_menu">Exercícios</span></a></li>
-                    <li><a href="/forum/"><span class="texto_menu">Fórum</span></a></li>
+                    <li><a href="{% url 'forum' %}"><span class="texto_menu">Fórum</span></a></li>
                     <li><a href="{% url 'logout' %}"><span class="texto_menu">Sair</span></a></li>
                 </ul>
             </div>

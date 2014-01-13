@@ -2,7 +2,7 @@
 {
     position: relative;
     float: left;
-    width: 100%;
+    width: 80%;
     text-align: center;
     margin: 10px 0;
 }
@@ -10,10 +10,9 @@
 #assunto
 {
     position: relative;
-    float: left;
+    float: right;
     width: 20%;
     height: 100%;
-    margin-bottom: 10px;
 }
 
 #lista_assunto
@@ -46,7 +45,7 @@
     position: relative;
     float: right;
     width: 95%;
-    margin-top: 1px;
+    margin: 1px 0;
 }
 
 .field
@@ -55,6 +54,18 @@
     color: #FFFFFF;
     width: 500px;
     height: 40px;
+    font-size: 14px;
+    border: 0;
+    font-family: arial;
+    padding: 0 10px;
+}
+
+.field_area
+{
+    background-color: #5F6166;
+    color: #FFFFFF;
+    width: 500px;
+    height: 70px;
     font-size: 14px;
     border: 0;
     font-family: arial;
@@ -86,4 +97,11 @@
 {
     font-family: arial;
     font-size: 15px;
+}
+
+.texto_credito
+{
+    font-family: arial;
+    font-size: 12px;
+    font-weight: bold;
 }

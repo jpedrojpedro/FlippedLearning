@@ -5,9 +5,9 @@ from usuario import Usuario
 
 
 class Comentario(models.Model):
-    id_duvida = models.ForeignKey(Duvida, db_column='id_duvida')
+    id_duvida = models.ForeignKey(Duvida, db_column='id_duvida', blank=False, null=False)
     login_usuario = models.ForeignKey(Usuario, db_column='login_usuario')
-    texto_comentario = models.CharField(max_length=1024)
+    texto_comentario = models.TextField(max_length=1024)
     dt_comentario = models.DateTimeField()
 
     class Meta:

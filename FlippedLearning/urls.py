@@ -27,6 +27,12 @@ urlpatterns = patterns('',
     # Forum Page :: Busca
     url(r'^forum/busca/$', 'database_app.views.forum.search', name='busca'),
 
+    # Forum Page :: Adicionar Comentario
+    url(r'^comentario/add/$', 'database_app.views.comentario.add', name='adicionar_comentario'),
+
+    # Forum Page :: Adicionar Duvida
+    url(r'^duvida/add/$', 'database_app.views.duvida.add', name='adicionar_duvida'),
+
     # Admin
     url(r'^admin/', include(admin.site.urls)),
 
