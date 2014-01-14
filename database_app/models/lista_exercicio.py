@@ -12,3 +12,4 @@ class ListaExercicio(models.Model):
     class Meta:
         db_table = 'lista_exercicio'
         verbose_name_plural = 'Listas de Exercicios'
+        app_label = 'database_app'

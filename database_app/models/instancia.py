@@ -12,3 +12,4 @@ class Instancia(models.Model):
 
     class Meta:
         db_table = 'instancia'
+        app_label = 'database_app'

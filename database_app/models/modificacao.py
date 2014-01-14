@@ -13,3 +13,4 @@ class Modificacao(models.Model):
     class Meta:
         db_table = 'modificacao'
         verbose_name_plural = 'Modificacoes'
+        app_label = 'database_app'

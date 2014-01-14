@@ -11,3 +11,4 @@ class Visualizacao(models.Model):
     class Meta:
         db_table = 'visualizacao'
         verbose_name_plural = 'Visualizacoes'
+        app_label = 'database_app'

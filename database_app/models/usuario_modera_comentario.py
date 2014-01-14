@@ -13,3 +13,4 @@ class UsuarioModeraComentario(models.Model):
     class Meta:
         db_table = 'usuario_modera_comentario'
         verbose_name_plural = 'Usuarios Moderam Comentarios'
+        app_label = 'database_app'

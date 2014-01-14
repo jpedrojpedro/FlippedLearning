@@ -11,3 +11,4 @@ class Esquema(models.Model):
 
     class Meta:
         db_table = 'esquema'
+        app_label = 'database_app'

@@ -14,3 +14,4 @@ class Usuario(models.Model):
 
     class Meta:
         db_table = 'usuario'
+        app_label = 'database_app'

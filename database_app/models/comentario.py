@@ -12,3 +12,4 @@ class Comentario(models.Model):
 
     class Meta:
         db_table = 'comentario'
+        app_label = 'database_app'

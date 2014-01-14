@@ -13,3 +13,4 @@ class Resposta(models.Model):
 
     class Meta:
         db_table = 'resposta'
+        app_label = 'database_app'

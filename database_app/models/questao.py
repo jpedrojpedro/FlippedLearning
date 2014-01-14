@@ -18,3 +18,4 @@ class Questao(models.Model):
     class Meta:
         db_table = 'questao'
         verbose_name_plural = 'Questoes'
+        app_label = 'database_app'

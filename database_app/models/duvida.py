@@ -12,3 +12,4 @@ class Duvida(models.Model):
 
     class Meta:
         db_table = 'duvida'
+        app_label = 'database_app'

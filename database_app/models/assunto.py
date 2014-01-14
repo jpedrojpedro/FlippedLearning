@@ -10,3 +10,4 @@ class Assunto(models.Model):
 
     class Meta:
         db_table = 'assunto'
+        app_label = 'database_app'

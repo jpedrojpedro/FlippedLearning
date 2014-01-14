@@ -11,3 +11,4 @@ class AssuntoDuvida(models.Model):
     class Meta:
         db_table = 'assunto_duvida'
         verbose_name_plural = 'Assuntos Duvidas'
+        app_label = 'database_app'
