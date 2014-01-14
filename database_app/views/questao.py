@@ -4,16 +4,19 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.db import connection, transaction
+from django.db.models import Max
 from database_app.models.questao import Questao
 from database_app.models.instancia import Instancia
 from database_app.models.esquema import Esquema
 from database_app.models.usuario import Usuario
+from database_app.models.resposta import Resposta
+from database_app.models.lista_exercicio import ListaExercicio
 from datetime import datetime
 
 @login_required
 def verificar(request, exercicio_id, questao_id):
     if request.POST:
-        r = request.POST['resposta']
+        answer = request.POST['resposta']
         # Obtendo a questão respondida
         q = Questao.objects.get(id=questao_id)
         schema_name = "%s_%s" % (q.nome_esquema, request.user)
@@ -23,15 +26,15 @@ def verificar(request, exercicio_id, questao_id):
         # Caso em que a instancia existe
         if i:
             trocar_esquema(schema_name)
-            result = comparar_respostas(r, q.resposta_gabarito)
-        # Caso em que a instancia não existe -- Salvar na tabela!
+            result = comparar_respostas(answer, q.resposta_gabarito)
+        # Caso em que a instancia não existe
         else:
             e = Esquema.objects.get(nome=q.nome_esquema)
             command = "create schema %s" % schema_name
             executar_comando(command)
             trocar_esquema(schema_name)
             executar_comando(e.criacao)
-            result = comparar_respostas(r, q.resposta_gabarito)
+            result = comparar_respostas(answer, q.resposta_gabarito)
             u = Usuario.objects.get(login=request.user)
             i = Instancia()
             i.nome_esquema = e
@@ -39,9 +42,28 @@ def verificar(request, exercicio_id, questao_id):
             i.login_usuario = u
             i.dt_criacao = datetime.now()
             i.save()
+        # Armazenar a tentativa do aluno
+        u = Usuario.objects.get(login=request.user)
+        r = Resposta()
+        r.login_usuario = u
+        r.resposta = answer
+        r.id_questao = q
+        r.dt_resposta = datetime.now()
+        if result:
+            r.dt_acerto = r.dt_resposta
+        r.save()
+        # Obter todas as respostas anteriores
+        l = ListaExercicio.objects.get(id=exercicio_id)
+        questions = l.questao_set.all()
+        dict = {}
+        for q in questions:
+            answers = q.resposta_set.all()
+            a = answers.filter(login_usuario=request.user, id=answers.aggregate(Max('id')))
+            dict[q.id] = a.resposta
         template = loader.get_template("question_page.html")
         context = RequestContext(request, {
             'answer': result,
+            'answers': dict
         })
         return HttpResponse(template.render(context))
 
