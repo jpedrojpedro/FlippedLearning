@@ -25,3 +25,9 @@
     cursor: pointer;
     margin-left: 5px;
 }
+
+.field_area
+{
+    width: 100%;
+    height: 100px;
+}

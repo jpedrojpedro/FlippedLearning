@@ -11,9 +11,9 @@
     <br/>
     <span class="texto_questao">{{ exercise.descricao }}</span>
     <br/>
-    <form method="post" action="">
-        <table>
-            {% for question in questions %}
+    {% for question in questions %}
+        <form method="post" action="{% url 'verificar_questao' exercise.id question.id %}">
+            <table style="width: 100%">
                 <tr>
                     <td>
                         <span class="texto_questao">{{ question.id }} . {{ question.pergunta }}</span>
@@ -21,15 +21,14 @@
                 </tr>
                 <tr>
                     <td>
-                        <textarea></textarea>
+                        <textarea name="resposta" class="field_area"></textarea>
                     </td>
                 </tr>
                 <tr>
                     <td align="right"><input type="submit" class="button" value="Enviar"></td>
                 </tr>
-            {% endfor %}
-        </table>
-        <input name="question" type="hidden" value="{{ question.id }}"/>
-        {% csrf_token %}
-    </form>
+            </table>
+            {% csrf_token %}
+        </form>
+    {% endfor %}
 {% endblock %}

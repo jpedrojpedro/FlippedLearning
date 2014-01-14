@@ -20,8 +20,7 @@ def list_all(request):
 def show(request, exercicio_id):
     # Obtendo a lista de exercício desejada
     exercise = ListaExercicio.objects.get(id=exercicio_id)
-    # Obtendo todas as questões da lista
-    # de exercícios
+    # Obtendo todas as questões da lista de exercícios
     questions = exercise.questao_set.all()
     template = loader.get_template("question_page.html")
     context = RequestContext(request, {
