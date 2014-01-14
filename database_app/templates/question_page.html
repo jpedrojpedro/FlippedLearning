@@ -11,6 +11,7 @@
     <br/>
     <span class="texto_questao">{{ exercise.descricao }}</span>
     <br/>
+    {% if answer %}Correto{% else %}Errado{% endif %}
     {% for question in questions %}
         <form method="post" action="{% url 'verificar_questao' exercise.id question.id %}">
             <table style="width: 100%">
