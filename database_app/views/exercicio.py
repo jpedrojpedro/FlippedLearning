@@ -17,14 +17,22 @@ def list_all(request):
 
 
 @login_required
-def show(request, exercicio_id):
+def show(request, exercicio_id, context=None):
     # Obtendo a lista de exercício desejada
     exercise = ListaExercicio.objects.get(id=exercicio_id)
     # Obtendo todas as questões da lista de exercícios
     questions = exercise.questao_set.all()
     template = loader.get_template("question_page.html")
-    context = RequestContext(request, {
-        'exercise': exercise,
-        'questions': questions
-    })
+    if context is None:
+        context = RequestContext(request, {
+            'exercise': exercise,
+            'questions': questions
+        })
+    else:
+        new_dict = {}
+        new_dict.update({'exercise': exercise})
+        new_dict.update({'questions': questions})
+        for d in context.dicts:
+            new_dict.update(d)
+        context = RequestContext(request, new_dict)
     return HttpResponse(template.render(context))

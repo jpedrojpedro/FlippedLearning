@@ -11,7 +11,11 @@
     <br/>
     <span class="texto_questao">{{ exercise.descricao }}</span>
     <br/>
-    {% if answer %}Correto{% else %}Errado{% endif %}
+    {% if answer == True %}
+        <div class="error_message" style="background-color: green">Resposta correta =)</div>
+    {% elif answer == False %}
+        <div class="error_message" style="background-color: red">Resposta incorreta =/</div>
+    {% endif %}
     {% for question in questions %}
         <form method="post" action="{% url 'verificar_questao' exercise.id question.id %}">
             <table style="width: 100%">
@@ -22,7 +26,13 @@
                 </tr>
                 <tr>
                     <td>
-                        <textarea name="resposta" class="field_area"></textarea>
+                        <textarea name="resposta" class="field_area">
+                            {% for key, value in answers.items %}
+                                {% if key == question.id %}
+                                    {{ value }}
+                                {% endif %}
+                            {% endfor %}
+                        </textarea>
                     </td>
                 </tr>
                 <tr>

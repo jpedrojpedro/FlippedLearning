@@ -1,16 +1,17 @@
 # coding=utf-8
 
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
 from django.template import RequestContext, loader
 from django.db import connection, transaction
 from django.db.models import Max
+from django.db.utils import DatabaseError
 from database_app.models.questao import Questao
 from database_app.models.instancia import Instancia
 from database_app.models.esquema import Esquema
 from database_app.models.usuario import Usuario
 from database_app.models.resposta import Resposta
 from database_app.models.lista_exercicio import ListaExercicio
+from database_app.views.exercicio import show
 from datetime import datetime
 
 @login_required
@@ -43,7 +44,7 @@ def verificar(request, exercicio_id, questao_id):
             i.dt_criacao = datetime.now()
             i.save()
         # Armazenar a tentativa do aluno
-        u = Usuario.objects.get(login=request.user)
+        u = Usuario.objects.get(login=login)
         r = Resposta()
         r.login_usuario = u
         r.resposta = answer
@@ -58,30 +59,38 @@ def verificar(request, exercicio_id, questao_id):
         dict = {}
         for q in questions:
             answers = q.resposta_set.all()
-            a = answers.filter(login_usuario=request.user, id=answers.aggregate(Max('id')))
-            dict[q.id] = a.resposta
-        template = loader.get_template("question_page.html")
+            if answers:
+                aux = answers.filter(login_usuario=login)
+                max_id = aux.aggregate(Max('id'))
+                a = aux.get(id=max_id['id__max'])
+                dict[q.id] = a.resposta
         context = RequestContext(request, {
             'answer': result,
             'answers': dict
         })
-        return HttpResponse(template.render(context))
+        return show(request, exercicio_id, context)
 
 
 def comparar_respostas(resposta_aluno, resposta_gabarito):
+    result = False
     cursor = connection.cursor()
-    cursor.execute(resposta_gabarito)
-    correct_answer = cursor.fetchall()
-    cursor.execute(resposta_aluno)
-    user_answer = cursor.fetchall()
-    if user_answer == correct_answer:
-        result = True
-    else:
-        result = False
-    cursor.execute("set search_path to public")
-    transaction.commit_unless_managed()
-    cursor.close()
-    return result
+    try:
+        cursor.execute(resposta_gabarito)
+        correct_answer = cursor.fetchall()
+        cursor.execute(resposta_aluno)
+        user_answer = cursor.fetchall()
+        if user_answer == correct_answer:
+            result = True
+        else:
+            result = False
+        cursor.execute("set search_path to public")
+        transaction.commit_unless_managed()
+        cursor.close()
+    except DatabaseError:
+        connection._rollback()
+        trocar_esquema('public')
+    finally:
+        return result
 
 
 def trocar_esquema(nome_esquema):
@@ -94,6 +103,10 @@ def trocar_esquema(nome_esquema):
 
 def executar_comando(sql):
     cursor = connection.cursor()
-    cursor.execute(sql)
-    transaction.commit_unless_managed()
-    cursor.close()
+    try:
+        cursor.execute(sql)
+        transaction.commit_unless_managed()
+        cursor.close()
+    except DatabaseError:
+        connection._rollback()
+        trocar_esquema('public')
