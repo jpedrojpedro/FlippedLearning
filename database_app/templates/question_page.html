@@ -17,29 +17,29 @@
         <div class="error_message" style="background-color: red">Resposta incorreta =/</div>
     {% endif %}
     {% for question in questions %}
-        <form method="post" action="{% url 'verificar_questao' exercise.id question.id %}">
-            <table style="width: 100%">
-                <tr>
-                    <td>
-                        <span class="texto_questao">{{ question.id }} . {{ question.pergunta }}</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <textarea name="resposta" class="field_area">
-                            {% for key, value in answers.items %}
-                                {% if key == question.id %}
-                                    {{ value }}
-                                {% endif %}
-                            {% endfor %}
-                        </textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right"><input type="submit" class="button" value="Enviar"></td>
-                </tr>
-            </table>
-            {% csrf_token %}
-        </form>
+        {% with question.id as q_id %}
+            <form method="post" action="{% url 'verificar_questao' exercise.id question.id %}">
+                <table style="width: 100%">
+                    <tr>
+                        <td>
+                            <span class="texto_questao">{{ question.id }} . {{ question.pergunta }}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            {% if answers %}
+                                <textarea name="resposta" class="field_area">{{ answers|lookup:item.q_id }}</textarea>
+                            {% else %}
+                                <textarea name="resposta" class="field_area"></textarea>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right"><input type="submit" class="button" value="Enviar"></td>
+                    </tr>
+                </table>
+                {% csrf_token %}
+            </form>
+        {% endwith %}
     {% endfor %}
 {% endblock %}

@@ -1,7 +1,6 @@
 # coding=utf-8
 
 from django.contrib.auth.decorators import login_required
-from django.template import RequestContext, loader
 from django.db import connection, transaction
 from django.db.models import Max
 from django.db.utils import DatabaseError
@@ -64,11 +63,11 @@ def verificar(request, exercicio_id, questao_id):
                 max_id = aux.aggregate(Max('id'))
                 a = aux.get(id=max_id['id__max'])
                 dict[q.id] = a.resposta
-        context = RequestContext(request, {
+        context_dict = {
             'answer': result,
-            'answers': dict
-        })
-        return show(request, exercicio_id, context)
+            'answers': dict,
+        }
+        return show(request, exercicio_id, context_dict)
 
 
 def comparar_respostas(resposta_aluno, resposta_gabarito):
