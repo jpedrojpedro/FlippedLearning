@@ -13,7 +13,7 @@ class Questao(models.Model):
     resposta_gabarito = models.TextField(max_length=1024, db_column='resposta')
 
     def __unicode__(self):
-        return self.pergunta;
+        return self.pergunta
 
     class Meta:
         db_table = 'questao'
