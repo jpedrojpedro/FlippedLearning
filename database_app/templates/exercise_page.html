@@ -7,11 +7,13 @@
 {% block link %}<link rel="stylesheet" type="text/css" href="{% static "css/exercise_page.css" %}">{% endblock %}
 
 {% block content %}
-    {% for exercise in exercises %}
-        <a href="{% url 'abrir_exercicio' exercise.id %}">
+    {% for key, value in exercises.items %}
+        <a href="{% url 'abrir_exercicio' key %}">
             <div class="exercicio" onclick="">
                 <span class="texto_exercicio">
-                    Descrição: {{ exercise.descricao }}
+                    {% for desc in value %}
+                        {{ desc }}<br/>
+                    {% endfor %}
                 </span>
             </div>
         </a>

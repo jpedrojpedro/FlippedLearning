@@ -3,6 +3,9 @@
     width: 100%;
     border: 1px solid #555555;
     background-color: #5F6166;
+    overflow: hidden;
+    margin: 10px 0;
+    border-radius: 4px;
 }
 
 .texto_exercicio
@@ -11,3 +14,5 @@
     font-size: 15px;
     color: #FFFFFF;
 }
+
+a { text-decoration: none; }

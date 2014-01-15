@@ -9,9 +9,13 @@ from database_app.models.lista_exercicio import ListaExercicio
 @login_required
 def list_all(request):
     exercises = ListaExercicio.objects.all()
+    dict_exercises = {}
+    for ex in exercises:
+        # Inserindo quebra de linha nas marcacoes de <br/>
+        dict_exercises[ex.id] = ex.descricao.split('<br/>')
     template = loader.get_template("exercise_page.html")
     context = RequestContext(request, {
-        'exercises': exercises,
+        'exercises': dict_exercises,
     })
     return HttpResponse(template.render(context))
 
@@ -21,11 +25,14 @@ def show(request, exercicio_id, dict=None):
     # Obtendo a lista de exercício desejada
     if ListaExercicio.objects.filter(id=exercicio_id):
         exercise = ListaExercicio.objects.get(id=exercicio_id)
+        # Inserindo quebra de linha nas marcacoes de <br/>
+        desc = exercise.descricao.split('<br/>')
         # Obtendo todas as questões da lista de exercícios
         questions = exercise.questao_set.all()
         template = loader.get_template("question_page.html")
         dict_final = {
-            'exercise': exercise,
+            'exercise_id': exercise.id,
+            'description': desc,
             'questions': questions,
         }
         if dict:
