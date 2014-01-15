@@ -61,8 +61,9 @@ def verificar(request, exercicio_id, questao_id):
             if answers:
                 aux = answers.filter(login_usuario=login)
                 max_id = aux.aggregate(Max('id'))
-                a = aux.get(id=max_id['id__max'])
-                dict[q.id] = a.resposta
+                if aux.filter(id=max_id['id__max']):
+                    a = aux.get(id=max_id['id__max'])
+                    dict[q.id] = a.resposta
         context_dict = {
             'answer': result,
             'answers': dict,
