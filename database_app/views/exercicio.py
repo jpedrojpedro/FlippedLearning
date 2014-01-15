@@ -33,8 +33,3 @@ def show(request, exercicio_id, dict=None):
             dict_final[i] = dict[i]
     context = RequestContext(request, dict_final)
     return HttpResponse(template.render(context))
-
-
-@register.filter(name='lookup')
-def cut(value, arg):
-    return value[arg]
