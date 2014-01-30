@@ -63,7 +63,11 @@ def verificar(request, exercicio_id, questao_id):
                 max_id = aux.aggregate(Max('id'))
                 if aux.filter(id=max_id['id__max']):
                     a = aux.get(id=max_id['id__max'])
-                    dict[q.id] = a.resposta
+                    if a.dt_acerto is None:
+                        correto = False
+                    else:
+                        correto = True
+                    dict[q.id] = [a.resposta, correto]
         context_dict = {
             'answer': result,
             'answers': dict,

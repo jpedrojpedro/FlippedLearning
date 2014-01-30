@@ -13,11 +13,6 @@
     <br/>
     <span class="texto_questao">{% for desc in description %}{{ desc }}<br/>{% endfor %}</span>
     <br/>
-    {% if answer == True %}
-        <div class="error_message" style="background-color: green">Resposta correta =)</div>
-    {% elif answer == False %}
-        <div class="error_message" style="background-color: red">Resposta incorreta =/</div>
-    {% endif %}
     {% for question in questions %}
         <form method="post" action="{% url 'verificar_questao' exercise_id question.id %}">
             <table style="width: 100%">
@@ -29,7 +24,26 @@
                 <tr>
                     <td>
                         {% if answers %}
-                            <textarea name="resposta" class="field_area">{{ answers|lookup:question.id }}</textarea>
+                            {% if answers|lookup:question.id %}
+                                {% with answers|lookup:question.id as aux %}
+                                    <textarea name="resposta" class="field_area">{{ aux.0 }}</textarea>
+                                    {% if aux.1 %}
+                                        <tr>
+                                            <td class="error_message" style="background-color: green">
+                                                Resposta correta
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td class="error_message" style="background-color: red">
+                                                Resposta incorreta
+                                            </td>
+                                        </tr>
+                                    {% endif %}
+                                {% endwith %}
+                            {% else %}
+                                <textarea name="resposta" class="field_area"></textarea>
+                            {% endif %}
                         {% else %}
                             <textarea name="resposta" class="field_area"></textarea>
                         {% endif %}
