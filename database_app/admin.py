@@ -32,7 +32,7 @@ class UsuarioAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         u, created = User.objects.get_or_create(username=obj.login)
         u.username = obj.login
-        u.password = obj.senha
+        u.set_password(obj.senha)
         u.email = obj.email
         u.first_name = obj.nome
         if obj.professor == '1':
@@ -42,7 +42,7 @@ class UsuarioAdmin(admin.ModelAdmin):
         else:
             u.is_staff = False
             u.is_superuser = False
-            u.is_active = False
+            u.is_active = True
         u.save()
         obj.save()
 
