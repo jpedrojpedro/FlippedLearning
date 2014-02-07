@@ -2,6 +2,8 @@ from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 
 admin.autodiscover()
 
@@ -19,6 +21,9 @@ urlpatterns = patterns('',
     url(r'^logout$', 'django.contrib.auth.views.logout_then_login', name='logout'),
 
     # Welcome Page
+    url(r'^inicio/', 'database_app.views.usuario.inicio', name='inicio'),
+    url(r'^$', 'database_app.views.usuario.inicio', name='home'),
+
     url(r'^inicio/', 'database_app.views.usuario.inicio', name='inicio'),
 
     # Forum Page
@@ -47,5 +52,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     # Static Files
-    url(r'^static/(?P<path>.*)$', 'django.views.static.serve',),
-)
+    #url(r'^static/(?P<path>.*)$', 'django.views.static.serve',),
+
+) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

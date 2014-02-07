@@ -4,6 +4,7 @@ from os import environ
 import os
 
 PROJECT_DIR = os.path.dirname(__file__)
+print "diretorio atual: %s" % PROJECT_DIR
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -66,11 +67,13 @@ LOGIN_URL = "/login"
 LOGIN_REDIRECT_URL = "/inicio"
 
 # Organização de arquivos estáticos
-MEDIA_URL = '/static/media/'
-MEDIA_ROOT = os.path.join(PROJECT_DIR, 'static/media/')
-STATIC_URL = '/static/collect/'
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static/collect/')
+MEDIA_URL = 'static/media/'
+MEDIA_ROOT = os.path.join(PROJECT_DIR, MEDIA_URL)
+print "aaaaaaaaaaaaaa %s" %MEDIA_ROOT
+STATIC_URL = 'static/collect/'
+STATIC_ROOT = os.path.join(PROJECT_DIR, STATIC_URL)
 TEMPLATE_DIRS = (os.path.join(PROJECT_DIR, 'templates/'),)
+print STATIC_ROOT
 
 STATICFILES_DIRS = (
 
