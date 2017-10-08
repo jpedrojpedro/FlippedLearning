@@ -18,7 +18,7 @@ Elaboration of web platform which aids student learning of database dis- cipline
 **Project Details:**
 
 - Question's correction and individual instances
-![alt tag](https://www.dropbox.com/s/eajro8ibvsmmkv9/question-correct-individual-instances.png?dl=0)
+![alt tag](https://www.dropbox.com/s/eajro8ibvsmmkv9/question-correct-individual-instances.png?raw=1)
 
 **Future Work**
 
@@ -26,7 +26,7 @@ Elaboration of web platform which aids student learning of database dis- cipline
 - Only comparing query results can take into a false-positive on answers' correction
 - Allow instance sharing between students (read-only mode)
 - Allow student to rollback operation and recover state N-1
-![alt tag](https://www.dropbox.com/s/q4b75q2iilp1ma1/future-work.png?dl=0)
+![alt tag](https://www.dropbox.com/s/q4b75q2iilp1ma1/future-work.png?raw=1)
 
 > Project Documentation: http://dbflippedlearning.blogspot.com.br/ (only in pt-BR)
 
